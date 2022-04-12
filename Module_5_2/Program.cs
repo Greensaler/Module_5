@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Module_5
+namespace Module_5_2
 {
     class Program
     {
