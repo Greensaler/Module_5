@@ -102,14 +102,30 @@ namespace Module_5_6_itog
 
             var User = EnterUser();
 
-            Console.WriteLine("Анкета пользователя:\nИмя: {0}", User.name);
-            Console.WriteLine("фамилия: {0}", User.LastName);
+            Console.WriteLine("--------------------------------------------");
+            Console.WriteLine("АНКЕТА ПОЛЬЗОВАТЕЛСЯ:\n\nИмя: {0}", User.name);
+            Console.WriteLine("Фамилия: {0}", User.LastName);
             Console.WriteLine("Возраст: {0} лет/года", User.Age);
             
             if (User.PetNames != null)
             {
-                Console.WriteLine("Наличие питомцев: {0}", User.PetIs);
-                Console.WriteLine("Клички питомцев: {0}", User.PetNames);
+                Console.WriteLine();
+                Console.WriteLine("Список кличек питомцев:");
+                for (int i = 0; i < User.PetNames.Length; i++)
+                {
+                    Console.WriteLine("Кличка питомца №{1}: {0}", User.PetNames[i], i + 1);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Питомцев нет");
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Список любимых цветов");
+            for (int i = 0; i < User.Colors.Length; i++)
+            {
+                Console.WriteLine("Любимый цвет №{1}: {0}", User.Colors[i], i + 1);
             }
 
         }
