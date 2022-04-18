@@ -57,7 +57,6 @@ namespace Module_5_2
 
             ShowColor();
 
-
         }
     }
 }
