@@ -23,27 +23,49 @@ namespace Module_5_6_itog
             }
         }
 
-        static (string PetIs, string[] PetNames) EnterPet()
+        static string[] EnterPet()
         {
-            (string PetIs, string[] PetNames) User;
-            User.PetIs = Console.ReadLine();
-            if (User.PetIs == "нет")
+            string a;
+            int intage;
+            do
             {
-                User.PetNames = new string[i];
-                for (int i = 0; i < favcolors.Length; i++)
+                Console.WriteLine("Введите количество питомцев цифрами");
+                a = Console.ReadLine();
+            } while (CheckNum(a, out intage));
+
+            string[] PetNames = new string[intage];
+                for (int i = 0; i < PetNames.Length; i++)
                 {
-                    Console.WriteLine("Введите любимый цвет номер {0}", i + 1);
-                    favcolors[i] = Console.ReadLine();
+                    Console.WriteLine("Кличка вашего питомца № {0}", i + 1);
+                    PetNames[i] = Console.ReadLine();
                 }
-            }
-            else
-                Console.WriteLine("Питомцев нет");
-            return User;
-               
+
+            return PetNames;
+
         }
-        static (string name, string LastName, int Age, string Pet) EnterUser()
+        static string[] ShowColor()
         {
-            (string Name, string LastName, int Age) User;
+            string a;
+            int intage;
+            do
+            {
+                Console.WriteLine("Введите количество ваших любимых цветов цифрами");
+                a = Console.ReadLine();
+            } while (CheckNum(a, out intage));
+
+            string[] Colors = new string[intage];
+            for (int i = 0; i < Colors.Length; i++)
+            {
+                Console.WriteLine("Ваш любимый цвет № {0}", i + 1);
+                Colors[i] = Console.ReadLine();
+            }
+
+            return Colors;
+
+        }
+        static (string name, string LastName, int Age, string PetIs, string[] PetNames, string[] Colors) EnterUser()
+        {
+            (string Name, string LastName, int Age, string PetIs, string[] PetNames, string[] Colors) User;
             Console.WriteLine("Введите имя");
             User.Name = Console.ReadLine();
 
@@ -60,6 +82,19 @@ namespace Module_5_6_itog
 
             User.Age = intage;
 
+            Console.WriteLine("Есть ли у вас питомцы. Введите: (да/нет)");
+            User.PetIs = Console.ReadLine();
+            if (User.PetIs == "да" || User.PetIs == "Да" || User.PetIs == "ДА" || User.PetIs == "дА")
+            {
+                User.PetNames = EnterPet();
+            }
+            else
+            {
+                User.PetNames = null;
+            }
+
+            User.Colors = ShowColor();
+
             return User;
         }
         static void ShowInfoUser()
@@ -70,6 +105,12 @@ namespace Module_5_6_itog
             Console.WriteLine("Анкета пользователя:\nИмя: {0}", User.name);
             Console.WriteLine("фамилия: {0}", User.LastName);
             Console.WriteLine("Возраст: {0} лет/года", User.Age);
+            
+            if (User.PetNames != null)
+            {
+                Console.WriteLine("Наличие питомцев: {0}", User.PetIs);
+                Console.WriteLine("Клички питомцев: {0}", User.PetNames);
+            }
 
         }
         static void Main(string[] args)
